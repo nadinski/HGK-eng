@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="HGK Engineering & Construction — Precision structural execution. From foundation to facade, we build the impossible."
+    />
+    <title>HGK Engineering & Construction | Build Beyond Limits</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---------- CRITICAL RESET & VARIABLES ---------- */
+      :root {
+        --bg: #f7f5f0;
+        --solid: #1c1c1e;
+        --gold: #c8a96e;
+        --concrete: #e5e1d8;
+        --transition: cubic-bezier(0.76, 0, 0.24, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--solid);
+        font-family: "Space Mono", "Courier New", monospace;
+        font-weight: 400;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        cursor: default;
+      }
+
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 0px;
+      }
+
+      .hero-title,
+      .section-title,
+      .stat-number {
+        font-family: "Space Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        line-height: 0.9;
+      }
+
+      .body-mono {
+        font-family: "Space Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #6b6b6e;
+      }
+
+      .gold-accent {
+        color: var(--gold);
+      }
+
+      .container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 6vw;
+      }
+
+      /* ---------- NAVIGATION ---------- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 6vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        mix-blend-mode: difference;
+        color: white;
+        background: transparent;
+        transition: background 0.4s var(--transition);
+      }
+
+      .logo {
+        font-family: "Space Mono", monospace;
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.1em;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--bg);
+        text-decoration: none;
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        font-family: "Space Mono", monospace;
+        transition: opacity 0.3s;
+        opacity: 0.8;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      /* ---------- HERO SECTION ---------- */
+      .hero-section {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--solid);
+        overflow: hidden;
+      }
+
+      #three-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        color: var(--bg);
+        pointer-events: none;
+      }
+
+      .hero-title {
+        font-size: clamp(4rem, 15vw, 12rem);
+        color: var(--bg);
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .hero-subtitle {
+        font-family: "Space Mono", monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.5em;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        color: var(--bg);
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        opacity: 0.6;
+        animation: fadeMove 2s infinite;
+      }
+
+      @keyframes fadeMove {
+        0% {
+          opacity: 0.2;
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(5px);
+        }
+        100% {
+          opacity: 0.2;
+          transform: translateX(-50%) translateY(0);
+        }
+      }
+
+      /* ---------- FOUNDER / CONSTRUCTION PHILOSOPHY SECTION ---------- */
+      .founder-section {
+        background: var(--bg);
+        padding: 12rem 0 8rem;
+        position: relative;
+        z-index: 10;
+      }
+
+      .founder-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4vw;
+        align-items: center;
+      }
+
+      .texture-placeholder {
+        width: 100%;
+        padding-bottom: 140%;
+        background: var(--concrete);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #9a9a9c;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="%23E5E1D8"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>');
+        background-size: cover;
+      }
+
+      .section-label {
+        font-family: "Space Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+
+      .founder-quote {
+        font-size: 1.8rem;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin-bottom: 2rem;
+        color: var(--solid);
+      }
+
+      .founder-name {
+        font-weight: 700;
+        border-top: 1px solid var(--concrete);
+        padding-top: 1.5rem;
+        display: inline-block;
+      }
+
+      /* ---------- STATS STRIP ---------- */
+      .stats-strip {
+        background: var(--solid);
+        color: var(--bg);
+        padding: 4rem 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 0 2rem;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-description {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+
+      /* ---------- CAPABILITIES MATRIX — REDESIGNED WITH AIR ---------- */
+      .matrix-section {
+        background: var(--bg);
+        padding: 10rem 0;
+        position: relative;
+      }
+      .matrix-header {
+        text-align: center;
+        margin-bottom: 8rem;
+      }
+      .matrix-header .section-label {
+        margin-bottom: 1rem;
+      }
+      .matrix-header .section-title {
+        font-size: 3rem;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.1;
+      }
+      /* Асимметричный grid с воздухом */
+      .matrix-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 3rem 2rem;
+        position: relative;
+      }
+      /* Каждая карточка занимает разное количество колонок для architectural feel */
+      .matrix-item {
+        background: var(--bg);
+        padding: 2.5rem 2rem;
+        transition: all 0.5s var(--transition);
+        cursor: default;
+        position: relative;
+        border: 1px solid transparent;
+      }
+      .matrix-item:nth-child(1) {
+        grid-column: span 4;
+      }
+      .matrix-item:nth-child(2) {
+        grid-column: span 4;
+        margin-top: 3rem;
+      }
+      .matrix-item:nth-child(3) {
+        grid-column: span 4;
+        margin-top: 1rem;
+      }
+      .matrix-item:nth-child(4) {
+        grid-column: span 5;
+        margin-top: -2rem;
+      }
+      .matrix-item:nth-child(5) {
+        grid-column: span 4;
+        margin-top: 2rem;
+      }
+      .matrix-item:nth-child(6) {
+        grid-column: span 3;
+        margin-top: -1rem;
+      }
+
+      .matrix-item:hover {
+        background: var(--solid);
+        color: var(--bg);
+        border-color: var(--gold);
+        transform: translateY(-4px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        z-index: 2;
+      }
+      .matrix-item:hover .matrix-icon-placeholder {
+        border-color: var(--gold);
+        background: var(--gold);
+      }
+      .matrix-icon-placeholder {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--solid);
+        margin-bottom: 2rem;
+        transition: all 0.5s var(--transition);
+        position: relative;
+      }
+      .matrix-icon-placeholder::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translate(-50%, -50%);
+        background: var(--solid);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        transition: background 0.5s var(--transition);
+      }
+      .matrix-item:hover .matrix-icon-placeholder::after {
+        background: var(--bg);
+      }
+      .matrix-item h3 {
+        font-family: "Space Mono", monospace;
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.3;
+      }
+      .matrix-item p {
+        font-size: 0.7rem;
+        line-height: 1.8;
+        opacity: 0.7;
+      }
+      /* Декоративная линия сбоку для architectural feel */
+      .matrix-section::before {
+        content: "";
+        position: absolute;
+        left: 6vw;
+        top: 15%;
+        bottom: 15%;
+        width: 1px;
+        background: var(--concrete);
+      }
+
+      /* Icon indicators */
+      .matrix-icon-placeholder::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        transform: translate(-50%, -50%);
+        background: var(--solid);
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      }
+
+      .matrix-item:hover .matrix-icon-placeholder::after {
+        background: var(--bg);
+      }
+
+      .matrix-item h3 {
+        font-family: "Space Mono", monospace;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.3;
+      }
+
+      .matrix-item p {
+        font-size: 0.7rem;
+        line-height: 1.8;
+        opacity: 0.7;
+      }
+
+      /* ---------- CONSTRUCTION PHILOSOPHY QUOTE ---------- */
+      .philosophy-section {
+        padding: 8rem 0;
+        background: var(--bg);
+      }
+
+      .philosophy-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6vw;
+        align-items: start;
+      }
+
+      .philosophy-large-text {
+        font-size: 2.5rem;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 700;
+      }
+
+      .philosophy-details {
+        font-size: 0.8rem;
+        line-height: 1.8;
+        opacity: 0.7;
+      }
+
+      /* ---------- PROJECTS INDEX ---------- */
+      .projects-section {
+        padding: 2rem 0 8rem;
+      }
+
+      .masonry {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4vw;
+      }
+
+      .project-card {
+        position: relative;
+        cursor: pointer;
+        transition: 0.5s;
+      }
+
+      .project-placeholder {
+        width: 100%;
+        padding-bottom: 120%;
+        background: var(--concrete);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-card:nth-child(2) .project-placeholder {
+        padding-bottom: 90%;
+        margin-top: 4rem;
+      }
+
+      .project-card:nth-child(3) .project-placeholder {
+        padding-bottom: 150%;
+        margin-top: -2rem;
+      }
+
+      .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(200, 169, 110, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s var(--transition);
+        color: var(--solid);
+      }
+
+      .project-card:hover .project-overlay {
+        opacity: 1;
+      }
+
+      .coordinates {
+        font-family: "Space Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+      }
+
+      .project-scope {
+        font-size: 0.65rem;
+        margin-top: 0.5rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        border-top: 1px solid var(--concrete);
+        padding: 3rem 6vw;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        color: #6b6b6e;
+        background: var(--bg);
+      }
+
+      /* ---------- CURSOR ---------- */
+      .custom-cursor {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--gold);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: difference;
+        transition: transform 0.1s ease-out;
+      }
+
+      /* ---------- RESPONSIVE BASIC ---------- */
+      @media (max-width: 768px) {
+        .founder-grid,
+        .philosophy-grid,
+        .masonry {
+          grid-template-columns: 1fr;
+        }
+        .stats-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .nav-links {
+          gap: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <nav>
+      <div class="logo">HGK ENG.</div>
+      <ul class="nav-links">
+        <li><a href="#">PRINCIPLES</a></li>
+        <li><a href="#">MATRIX</a></li>
+        <li><a href="#">INDEX</a></li>
+        <li><a href="#">VAULT</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-section">
+      <canvas id="three-canvas"></canvas>
+      <div class="hero-content">
+        <h1 class="hero-title">HGK</h1>
+        <p class="hero-subtitle">The Art of Structural Integrity</p>
+      </div>
+      <div class="scroll-indicator">( SCROLL )</div>
+    </section>
+
+    <!-- FOUNDER: THE CONSTRUCTION ETHOS -->
+    <section class="founder-section container">
+      <div class="founder-grid">
+        <div>
+          <!-- PLACEHOLDER: Pouring of a massive foundation mat. Concrete flowing into rebar cages at scale. Monochrome with warm cast. -->
+          <div class="texture-placeholder">
+            <span>[ Foundation Pour — 12,000m³ Continuous ]</span>
+          </div>
+        </div>
+        <div>
+          <p class="section-label">/ Founder's Principle</p>
+          <p class="founder-quote">
+            "Engineering drawings mean nothing without the will to execute them.
+            We don't design concepts. We pour concrete, we tension cables, we
+            defy geology. When architects hand us their most ambitious visions,
+            we hand them back — built."
+          </p>
+          <div class="founder-name">
+            <span>Hasan Gökhan Kokoglu</span><br />
+            <span class="body-mono">Founder & Chief Engineer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS: THE SCALE OF EXECUTION -->
+    <section class="stats-strip container-full" style="padding: 4rem 6vw">
+      <div class="stat-item">
+        <div class="stat-number">2.4M</div>
+        <div class="stat-description">
+          Square meters<br />under construction<br />since 1998
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">186</div>
+        <div class="stat-description">
+          Projects completed<br />across 12 countries<br />zero failures
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">9.2</div>
+        <div class="stat-description">
+          Magnitude seismic<br />resistance engineered<br />and tested
+        </div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">24/7</div>
+        <div class="stat-description">
+          Site operations<br />real-time monitoring<br />global deployment
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES MATRIX — REDESIGNED -->
+    <section class="matrix-section container">
+      <div class="matrix-grid">
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>Seismic<br />Engineering & Execution</h3>
+          <p>
+            Base isolation systems. Fluid viscous dampers. Post-tensioned shear
+            walls. We build resistance into every pour.
+          </p>
+        </div>
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>Deep Foundation<br />& Ground Engineering</h3>
+          <p>
+            Barrette piles to 80m. Diaphragm walls in aggressive hydrostatic
+            conditions. Ground freezing where required.
+          </p>
+        </div>
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>High-Rise<br />Core & Shell</h3>
+          <p>
+            Jump-form and slip-form systems. Column-tree steel erection.
+            Delivering a floor every 4 days.
+          </p>
+        </div>
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>Complex<br />Facade Installation</h3>
+          <p>
+            Unitized curtain walls. Point-fixed structural glazing. 80,000+
+            elements installed annually.
+          </p>
+        </div>
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>Infrastructure<br />& Heavy Civil</h3>
+          <p>
+            Bridge construction. Marine works. TBM tunneling. Heavy lifting up
+            to 1,200 tonnes.
+          </p>
+        </div>
+        <div class="matrix-item">
+          <div class="matrix-icon-placeholder"></div>
+          <h3>MEP Integration<br />& Building Physics</h3>
+          <p>
+            Full BIM Level 3 coordination. Prefabricated service modules.
+            Commissioning management.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS: EXECUTED WORK -->
+    <section class="projects-section container">
+      <div class="masonry">
+        <div class="project-card">
+          <div class="project-placeholder" style="background: #ddd">
+            <!-- PLACEHOLDER: Night pour of a raft foundation. Tower cranes, pump trucks, floodlights. Industrial scale. -->
+          </div>
+          <div class="project-overlay">
+            <span class="coordinates">41.0082° N, 28.9784° E</span>
+            <span class="body-mono" style="margin-top: 0.5rem"
+              >Istanbul Financial Tower</span
+            >
+            <span class="project-scope"
+              >Scope: Core & Shell, 380m<br />Continuous foundation mat pour:
+              18,500m³</span
+            >
+            <span class="body-mono">2026</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-placeholder" style="background: #c4c4c4">
+            <!-- PLACEHOLDER: Steel truss being lifted by crawler crane against desert sky. Scale reference: workers look tiny. -->
+          </div>
+          <div class="project-overlay">
+            <span class="coordinates">25.2048° N, 55.2708° E</span>
+            <span class="body-mono" style="margin-top: 0.5rem"
+              >Museum of Gravity</span
+            >
+            <span class="project-scope"
+              >Scope: Full structural package<br />Longest cantilever: 42m
+              unsupported</span
+            >
+            <span class="body-mono">2024</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-placeholder" style="background: #bcbcbc">
+            <!-- PLACEHOLDER: Drone view of complex formwork geometry — curved walls, amphitheater-like structure. -->
+          </div>
+          <div class="project-overlay">
+            <span class="coordinates">24.7136° N, 46.6753° E</span>
+            <span class="body-mono" style="margin-top: 0.5rem"
+              >Riyadh Symphony Hall</span
+            >
+            <span class="project-scope"
+              >Scope: Substructure + Superstructure<br />Custom formwork: 1,200
+              unique shapes</span
+            >
+            <span class="body-mono">2023</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY: WHY WE BUILD -->
+    <section class="philosophy-section container">
+      <div class="philosophy-grid">
+        <div>
+          <p class="section-label">/ Construction Ethos</p>
+          <p class="philosophy-large-text">
+            We are not consultants who observe from the sideline. We are the
+            ones who mobilize, excavate, form, pour, erect, tension, clad, and
+            commission.
+          </p>
+        </div>
+        <div class="philosophy-details">
+          <p>
+            HGK Engineering & Construction operates as a single point of
+            responsibility for structural execution. Our engineering team
+            remains embedded with the construction crew — from the first pile to
+            the final handover. This continuity eliminates the gap between
+            design intent and built reality.
+          </p>
+          <p style="margin-top: 1.5rem">
+            Our teams are authorized, insured, and equipped to self-perform
+            critical scopes: concrete, steel erection, and heavy lifting. When
+            we sign a contract, we bring our own forces to the site — not a
+            chain of subcontractors.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div>ISTANBUL — LONDON — DUBAI</div>
+      <div>© HGK ENGINEERING & CONSTRUCTION</div>
+      <div>EXECUTION@HGK-ENG.COM</div>
+    </footer>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from "three";
+
+      const canvas = document.getElementById("three-canvas");
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      camera.position.z = 5;
+
+      const group = new THREE.Group();
+
+      // Central structural core — hexagonal, like a high-rise core
+      const geometryCore = new THREE.CylinderGeometry(0.5, 0.5, 2.5, 6);
+      const materialWire = new THREE.MeshBasicMaterial({
+        color: 0xc8a96e,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.4,
+      });
+      const core = new THREE.Mesh(geometryCore, materialWire);
+      group.add(core);
+
+      // Tension ring — representing structural bracing
+      const ringGeo = new THREE.TorusGeometry(1.2, 0.02, 8, 40);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xf7f5f0,
+        wireframe: false,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 2;
+      group.add(ring);
+
+      // Outrigger structural arms
+      for (let i = 0; i < 4; i++) {
+        const armGeo = new THREE.BoxGeometry(0.1, 1.8, 0.1);
+        const arm = new THREE.Mesh(armGeo, materialWire);
+        arm.rotation.z = (i * Math.PI) / 4;
+        group.add(arm);
+      }
+
+      scene.add(group);
+
+      // Construction dust particles
+      const particlesGeo = new THREE.BufferGeometry();
+      const particlesCount = 150;
+      const posArray = new Float32Array(particlesCount * 3);
+      for (let i = 0; i < particlesCount * 3; i++) {
+        posArray[i] = (Math.random() - 0.5) * 8;
+      }
+      particlesGeo.setAttribute(
+        "position",
+        new THREE.BufferAttribute(posArray, 3)
+      );
+      const particlesMat = new THREE.PointsMaterial({
+        size: 0.02,
+        color: 0xc8a96e,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+      });
+      const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+      scene.add(particlesMesh);
+
+      let mouseX = 0;
+      let mouseY = 0;
+
+      window.addEventListener("mousemove", (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        group.rotation.y += 0.002;
+        group.rotation.x = mouseY * 0.2;
+        group.rotation.z = mouseX * 0.1;
+        particlesMesh.rotation.y -= 0.0005;
+        ring.material.opacity = 0.5 + Math.sin(Date.now() * 0.003) * 0.2;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+
+      // Cursor
+      const cursor = document.getElementById("cursor");
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.transform = `translate(${e.clientX - 4}px, ${
+          e.clientY - 4
+        }px)`;
+      });
+
+      document.querySelectorAll(".project-card, .matrix-item").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          cursor.style.transform = "scale(3)";
+          cursor.style.background = "white";
+        });
+        el.addEventListener("mouseleave", () => {
+          cursor.style.transform = "scale(1)";
+          cursor.style.background = "#C8A96E";
+        });
+      });
+    </script>
+  </body>
+</html>
