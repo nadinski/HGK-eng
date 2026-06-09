@@ -232,38 +232,32 @@
         gap: 4vw;
         align-items: center;
       }
-.texture-placeholder {
-  width: 100%;
-  padding-bottom: 140%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #9a9a9c;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  
-  background-image: 
-    /* Слой 1 (верх): градиент в цвет обложки */
-    linear-gradient(
-      to bottom,
-      var(--solid) 0%,
-      rgba(28, 28, 30, 0.7) 12%,
-      rgba(28, 28, 30, 0) 35%
-    ),
-    /* Слой 2: оригинальный SVG с треугольником и кругом */
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="%23E5E1D8" fill-opacity="0.85"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>'),
-    /* Слой 3 (низ): фотография */
-    url('night2w.webp');
-  
-  background-size: 
-    auto,    /* градиент */
-    100% 100%, /* SVG-текстура */
-    cover;     /* фото */
-  background-position: center;
-  background-repeat: no-repeat;
-}
+      .texture-placeholder {
+        width: 100%;
+        padding-bottom: 140%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #9a9a9c;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background-color: var(--concrete);
+        background-image: url("night2w.webp");
+        background-size: cover;
+        /* SVG-узор через псевдоэлемент, чтобы сохранить его масштаб и позицию */
+      }
+
+      .texture-placeholder::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="none"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>');
+        background-size: cover;
+
+        pointer-events: none;
+      }
       .section-label {
         font-family: "Space Mono", monospace;
         font-size: 0.65rem;
