@@ -1359,18 +1359,19 @@
         cursor.style.display = "none";
       }
       
+<script>
   (function () {
-    const wrapper = document.querySelector(".projects-carousel-wrapper");
     const carousel = document.getElementById("projectsCarousel");
     const prevBtn = document.getElementById("carouselPrev");
     const nextBtn = document.getElementById("carouselNext");
 
-    if (!carousel || !prevBtn || !nextBtn || !wrapper) return;
+    if (!carousel || !prevBtn || !nextBtn) return;
 
     let currentIndex = 0;
     const cards = carousel.querySelectorAll(".project-card");
 
-    function getCardOffset(index) {
+    // Рассчитываем смещение на основе ширины карточки + gap
+    function getScrollAmount(index) {
       if (index <= 0) return 0;
       let offset = 0;
       const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
@@ -1381,14 +1382,24 @@
     }
 
     function updateCarousel() {
-      const scrollAmount = getCardOffset(currentIndex);
+      const scrollAmount = getScrollAmount(currentIndex);
       carousel.style.transform = `translateX(-${scrollAmount}px)`;
 
       // Прячем стрелки по краям
-      prevBtn.style.opacity = currentIndex === 0 ? "0" : "1";
-      prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
-      nextBtn.style.opacity = currentIndex >= cards.length - 1 ? "0" : "1";
-      nextBtn.style.pointerEvents = currentIndex >= cards.length - 1 ? "none" : "auto";
+      if (currentIndex === 0) {
+        prevBtn.style.opacity = "0";
+        prevBtn.style.pointerEvents = "none";
+      } else {
+        prevBtn.style.opacity = "1";
+        prevBtn.style.pointerEvents = "auto";
+      }
+      if (currentIndex >= cards.length - 1) {
+        nextBtn.style.opacity = "0";
+        nextBtn.style.pointerEvents = "none";
+      } else {
+        nextBtn.style.opacity = "1";
+        nextBtn.style.pointerEvents = "auto";
+      }
     }
 
     function goNext() {
@@ -1408,7 +1419,7 @@
     nextBtn.addEventListener("click", goNext);
     prevBtn.addEventListener("click", goPrev);
 
-    // Клавиатура
+    // Клавиатура: стрелки влево/вправо
     document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight") {
         e.preventDefault();
@@ -1423,23 +1434,31 @@
     let touchStartX = 0;
     let touchEndX = 0;
 
-    carousel.addEventListener("touchstart", function (e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    carousel.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
 
-    carousel.addEventListener("touchend", function (e) {
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) goNext();
-        else goPrev();
-      }
-    }, { passive: true });
+    carousel.addEventListener(
+      "touchend",
+      function (e) {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goNext();
+          else goPrev();
+        }
+      },
+      { passive: true }
+    );
 
     // Инициализация
     updateCarousel();
   })();
-
+</script>
     </script>
   </body>
 </html>
