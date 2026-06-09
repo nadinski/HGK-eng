@@ -244,24 +244,23 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   
-  /* Многослойный фон: градиент → SVG-текстура → фото */
   background-image: 
-    /* Слой 1: Градиент сверху в цвет обложки (тёмный) */
+    /* Слой 1 (верх): градиент в цвет обложки */
     linear-gradient(
       to bottom,
       var(--solid) 0%,
       rgba(28, 28, 30, 0.7) 12%,
       rgba(28, 28, 30, 0) 35%
     ),
-    /* Слой 2: SVG-текстура с треугольником и кругом — полупрозрачная */
-    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="transparent"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.8" fill="none" opacity="0.6"/><circle cx="50" cy="50" r="15" stroke="%23C8A96E" stroke-width="0.8" fill="none" opacity="0.6"/></svg>'),
-    /* Слой 3: Фотография */
+    /* Слой 2: оригинальный SVG с треугольником и кругом */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="%23E5E1D8" fill-opacity="0.85"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>'),
+    /* Слой 3 (низ): фотография */
     url('night2w.webp');
   
   background-size: 
-    auto,      /* градиент — на весь блок */
-    100% 100%, /* SVG — растянут */
-    cover;     /* фото — cover */
+    auto,    /* градиент */
+    100% 100%, /* SVG-текстура */
+    cover;     /* фото */
   background-position: center;
   background-repeat: no-repeat;
 }
