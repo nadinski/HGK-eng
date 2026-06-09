@@ -775,45 +775,40 @@
         display: inline-block;
         align-self: flex-start;
       }
-      /* ---------- PROJECTS CAROUSEL ---------- */
+    /* ---------- PROJECTS CAROUSEL (JS-driven) ---------- */
+.projects-carousel-wrapper {
+  position: relative;
+  padding: 0 6vw;
+  overflow: hidden;
+}
+
 .projects-carousel {
   display: flex;
   gap: 2vw;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  padding: 0 6vw;
-  cursor: grab;
-  user-select: none;
-}
-.projects-carousel::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-.projects-carousel:active {
-  cursor: grabbing;
+  transition: transform 0.6s var(--transition);
+  will-change: transform;
 }
 
 .project-card {
   flex: 0 0 auto;
-  scroll-snap-align: start;
   position: relative;
   height: 70vh;
-  display: inline-block;
 }
+
 .project-card img {
   height: 100%;
   width: auto;
   display: block;
-  object-fit: contain;
   filter: grayscale(30%);
   transition: filter 0.6s var(--transition);
+  pointer-events: none; /* Чтобы не мешать drag на мобилке */
 }
+
 .project-card:hover img {
   filter: grayscale(0%);
 }
 
-/* Золотой оверлей — как был, но адаптирован */
+/* Оверлей */
 .project-card .project-overlay {
   position: absolute;
   inset: 0;
@@ -827,39 +822,97 @@
   color: var(--solid);
   pointer-events: none;
 }
+
 .project-card:hover .project-overlay {
   opacity: 1;
 }
 
 .project-overlay .project-name {
   font-family: "Space Mono", monospace;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: -0.02em;
   margin-bottom: 0.3rem;
 }
+
 .project-overlay .project-location {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-family: "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
   opacity: 0.8;
 }
+
 .project-overlay .project-scope {
-  font-size: 0.65rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
   margin-top: 1rem;
   line-height: 1.6;
   opacity: 0.9;
-  max-width: 300px;
+  max-width: 320px;
 }
+
 .project-overlay .project-status {
   font-family: "Space Mono", monospace;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2em;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   padding: 0.4rem 1rem;
   border: 1px solid var(--solid);
   display: inline-block;
   align-self: flex-start;
+}
+
+/* Кнопки-стрелки */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(28, 28, 30, 0.7);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  z-index: 5;
+  font-family: "Space Mono", monospace;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s var(--transition);
+  backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+  background: var(--solid);
+  color: var(--bg);
+  border-color: var(--bg);
+}
+
+.carousel-btn.prev {
+  left: 6vw;
+}
+
+.carousel-btn.next {
+  right: 6vw;
+}
+
+@media (max-width: 768px) {
+  .project-card {
+    height: 55vh;
+  }
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .carousel-btn.prev {
+    left: 2vw;
+  }
+  .carousel-btn.next {
+    right: 2vw;
+  }
 }
     </style>
   </head>
@@ -1082,7 +1135,7 @@
   <div class="projects-carousel" id="projectsCarousel">
     <!-- 1. Georgia Dırsi -->
     <div class="project-card">
-      <img src="image 11.webp" alt="Dırsi Masterplan" loading="lazy" />
+      <img src="image-11.webp" alt="Dırsi Masterplan" loading="lazy" />
       <div class="project-overlay">
         <span class="project-name">Dırsi Masterplan</span>
         <span class="project-location">Tbilisi, Georgia</span>
@@ -1093,7 +1146,7 @@
 
     <!-- 2. Lujo Bodrum — Landscape Wing -->
     <div class="project-card">
-      <img src="image 13.webp" alt="Lujo Bodrum Landscape Wing" loading="lazy" />
+      <img src="image-13.webp" alt="Lujo Bodrum Landscape Wing" loading="lazy" />
       <div class="project-overlay">
         <span class="project-name">Lujo Bodrum</span>
         <span class="project-location">Bodrum, Turkey</span>
@@ -1104,7 +1157,7 @@
 
     <!-- 3. Ankara Greenline -->
     <div class="project-card">
-      <img src="image 5.webp" alt="Ankara Greenline Residences" loading="lazy" />
+      <img src="image-5.webp" alt="Ankara Greenline Residences" loading="lazy" />
       <div class="project-overlay">
         <span class="project-name">Ankara Greenline Residences</span>
         <span class="project-location">Ankara, Turkey</span>
@@ -1115,7 +1168,7 @@
 
     <!-- 4. Lujo Bodrum — Main Pavilion -->
     <div class="project-card">
-      <img src="image 23.webp" alt="Lujo Bodrum Main Pavilion" loading="lazy" />
+      <img src="image-23.webp" alt="Lujo Bodrum Main Pavilion" loading="lazy" />
       <div class="project-overlay">
         <span class="project-name">Lujo Bodrum</span>
         <span class="project-location">Bodrum, Turkey</span>
@@ -1126,7 +1179,7 @@
 
     <!-- 5. Ankara Private Residence -->
     <div class="project-card">
-      <img src="image 6.webp" alt="Ankara Private Residence" loading="lazy" />
+      <img src="image-6.webp" alt="Ankara Private Residence" loading="lazy" />
       <div class="project-overlay">
         <span class="project-name">Ankara Private Residence</span>
         <span class="project-location">Ankara, Turkey</span>
