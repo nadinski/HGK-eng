@@ -52,28 +52,7 @@
       }
       ::-webkit-scrollbar-thumb {
         background: var(--gold);
-        border-radius: 0px;
-      }
-
-      .hero-title,
-      .section-title,
-      .stat-number {
-        font-family: "Space Mono", monospace;
-        text-transform: uppercase;
-        letter-spacing: -0.03em;
-        line-height: 0.9;
-      }
-
-      .body-mono {
-        font-family: "Space Mono", monospace;
-        font-size: 0.75rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #6b6b6e;
-      }
-
-      .gold-accent {
-        color: var(--gold);
+        border-radius: 0;
       }
 
       .container {
@@ -82,13 +61,36 @@
         padding: 0 6vw;
       }
 
+      .gold-accent {
+        color: var(--gold);
+      }
+
+      /* ---------- TYPOGRAPHY ---------- */
+      .hero-title,
+      .section-title,
+      .stat-number,
+      .founder-quote,
+      .philosophy-large-text {
+        font-family: "Space Mono", monospace;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        line-height: 0.9;
+      }
+      .body-mono {
+        font-family: "Space Mono", monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: #6b6b6e;
+      }
+
       /* ---------- NAVIGATION ---------- */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        padding: 2rem 6vw;
+        padding: 1.5rem 6vw;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -96,22 +98,18 @@
         mix-blend-mode: difference;
         color: white;
         background: transparent;
-        transition: background 0.4s var(--transition);
       }
-
       .logo {
         font-family: "Space Mono", monospace;
         font-weight: 700;
         font-size: 1.2rem;
         letter-spacing: 0.1em;
       }
-
       .nav-links {
         display: flex;
         gap: 3rem;
         list-style: none;
       }
-
       .nav-links a {
         color: var(--bg);
         text-decoration: none;
@@ -121,12 +119,40 @@
         transition: opacity 0.3s;
         opacity: 0.8;
       }
-
       .nav-links a:hover {
         opacity: 1;
       }
 
-      /* ---------- HERO SECTION ---------- */
+      /* Бургер-меню */
+      .burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 101;
+        padding: 5px;
+        mix-blend-mode: difference;
+      }
+      .burger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: white;
+        transition: all 0.3s var(--transition);
+      }
+      .burger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .burger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .burger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      /* ---------- HERO ---------- */
       .hero-section {
         height: 100vh;
         width: 100%;
@@ -138,7 +164,6 @@
         background: var(--solid);
         overflow: hidden;
       }
-
       #three-canvas {
         position: absolute;
         top: 0;
@@ -148,7 +173,6 @@
         z-index: 1;
         pointer-events: none;
       }
-
       .hero-content {
         position: relative;
         z-index: 10;
@@ -156,22 +180,19 @@
         color: var(--bg);
         pointer-events: none;
       }
-
       .hero-title {
         font-size: clamp(4rem, 15vw, 12rem);
         color: var(--bg);
         margin-bottom: 1rem;
         font-weight: 700;
       }
-
       .hero-subtitle {
         font-family: "Space Mono", monospace;
-        font-size: 0.8rem;
+        font-size: clamp(0.6rem, 1.5vw, 0.8rem);
         letter-spacing: 0.5em;
         color: var(--gold);
         text-transform: uppercase;
       }
-
       .scroll-indicator {
         position: absolute;
         bottom: 3rem;
@@ -184,7 +205,6 @@
         opacity: 0.6;
         animation: fadeMove 2s infinite;
       }
-
       @keyframes fadeMove {
         0% {
           opacity: 0.2;
@@ -200,21 +220,17 @@
         }
       }
 
-      /* ---------- FOUNDER / CONSTRUCTION PHILOSOPHY SECTION ---------- */
+      /* ---------- FOUNDER ---------- */
       .founder-section {
         background: var(--bg);
         padding: 12rem 0 8rem;
-        position: relative;
-        z-index: 10;
       }
-
       .founder-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 4vw;
         align-items: center;
       }
-
       .texture-placeholder {
         width: 100%;
         padding-bottom: 140%;
@@ -230,7 +246,6 @@
         background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="%23E5E1D8"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>');
         background-size: cover;
       }
-
       .section-label {
         font-family: "Space Mono", monospace;
         font-size: 0.65rem;
@@ -239,15 +254,11 @@
         text-transform: uppercase;
         margin-bottom: 2rem;
       }
-
       .founder-quote {
-        font-size: 1.8rem;
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
         line-height: 1.2;
-        letter-spacing: -0.01em;
         margin-bottom: 2rem;
-        color: var(--solid);
       }
-
       .founder-name {
         font-weight: 700;
         border-top: 1px solid var(--concrete);
@@ -259,24 +270,23 @@
       .stats-strip {
         background: var(--solid);
         color: var(--bg);
-        padding: 4rem 0;
+        padding: 5rem 6vw;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 2rem;
       }
-
       .stat-item {
         text-align: center;
-        padding: 0 2rem;
+        padding: 0 1rem;
       }
-
       .stat-number {
-        font-size: 3rem;
+        font-size: clamp(2rem, 5vw, 3.5rem);
         font-weight: 700;
         color: var(--gold);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.8rem;
+        font-feature-settings: "tnum";
+        letter-spacing: 0;
       }
-
       .stat-description {
         font-size: 0.7rem;
         letter-spacing: 0.1em;
@@ -285,40 +295,23 @@
         line-height: 1.6;
       }
 
-      /* ---------- CAPABILITIES MATRIX — REDESIGNED WITH AIR ---------- */
+      /* ---------- CAPABILITIES MATRIX ---------- */
       .matrix-section {
         background: var(--bg);
         padding: 10rem 0;
         position: relative;
       }
-      .matrix-header {
-        text-align: center;
-        margin-bottom: 8rem;
-      }
-      .matrix-header .section-label {
-        margin-bottom: 1rem;
-      }
-      .matrix-header .section-title {
-        font-size: 3rem;
-        max-width: 800px;
-        margin: 0 auto;
-        line-height: 1.1;
-      }
-      /* Асимметричный grid с воздухом */
       .matrix-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 3rem 2rem;
-        position: relative;
+        gap: 2rem;
       }
-      /* Каждая карточка занимает разное количество колонок для architectural feel */
       .matrix-item {
         background: var(--bg);
         padding: 2.5rem 2rem;
         transition: all 0.5s var(--transition);
-        cursor: default;
-        position: relative;
         border: 1px solid transparent;
+        cursor: default;
       }
       .matrix-item:nth-child(1) {
         grid-column: span 4;
@@ -343,7 +336,6 @@
         grid-column: span 3;
         margin-top: -1rem;
       }
-
       .matrix-item:hover {
         background: var(--solid);
         color: var(--bg);
@@ -351,10 +343,6 @@
         transform: translateY(-4px);
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         z-index: 2;
-      }
-      .matrix-item:hover .matrix-icon-placeholder {
-        border-color: var(--gold);
-        background: var(--gold);
       }
       .matrix-icon-placeholder {
         width: 40px;
@@ -376,6 +364,10 @@
         clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         transition: background 0.5s var(--transition);
       }
+      .matrix-item:hover .matrix-icon-placeholder {
+        border-color: var(--gold);
+        background: var(--gold);
+      }
       .matrix-item:hover .matrix-icon-placeholder::after {
         background: var(--bg);
       }
@@ -390,106 +382,25 @@
         line-height: 1.8;
         opacity: 0.7;
       }
-      /* Декоративная линия сбоку для architectural feel */
-      .matrix-section::before {
-        content: "";
-        position: absolute;
-        left: 6vw;
-        top: 15%;
-        bottom: 15%;
-        width: 1px;
-        background: var(--concrete);
-      }
 
-      /* Icon indicators */
-      .matrix-icon-placeholder::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 16px;
-        height: 16px;
-        transform: translate(-50%, -50%);
-        background: var(--solid);
-        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      }
-
-      .matrix-item:hover .matrix-icon-placeholder::after {
-        background: var(--bg);
-      }
-
-      .matrix-item h3 {
-        font-family: "Space Mono", monospace;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-      }
-
-      .matrix-item p {
-        font-size: 0.7rem;
-        line-height: 1.8;
-        opacity: 0.7;
-      }
-
-      /* ---------- CONSTRUCTION PHILOSOPHY QUOTE ---------- */
-      .philosophy-section {
-        padding: 8rem 0;
-        background: var(--bg);
-      }
-
-      .philosophy-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6vw;
-        align-items: start;
-      }
-
-      .philosophy-large-text {
-        font-size: 2.5rem;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-        font-weight: 700;
-      }
-
-      .philosophy-details {
-        font-size: 0.8rem;
-        line-height: 1.8;
-        opacity: 0.7;
-      }
-
-      /* ---------- PROJECTS INDEX ---------- */
+      /* ---------- PROJECTS ---------- */
       .projects-section {
         padding: 2rem 0 8rem;
       }
-
       .masonry {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 4vw;
       }
-
       .project-card {
         position: relative;
         cursor: pointer;
-        transition: 0.5s;
       }
-
       .project-placeholder {
         width: 100%;
         padding-bottom: 120%;
         background: var(--concrete);
-        position: relative;
         overflow: hidden;
-      }
-
-      .project-card:nth-child(2) .project-placeholder {
-        padding-bottom: 90%;
-        margin-top: 4rem;
-      }
-
-      .project-card:nth-child(3) .project-placeholder {
-        padding-bottom: 150%;
-        margin-top: -2rem;
       }
 
       .project-overlay {
@@ -507,22 +418,40 @@
         transition: opacity 0.4s var(--transition);
         color: var(--solid);
       }
-
       .project-card:hover .project-overlay {
         opacity: 1;
       }
-
       .coordinates {
         font-family: "Space Mono", monospace;
         font-size: 0.7rem;
         letter-spacing: 0.1em;
       }
-
       .project-scope {
         font-size: 0.65rem;
         margin-top: 0.5rem;
         line-height: 1.6;
         opacity: 0.8;
+      }
+
+      /* ---------- PHILOSOPHY ---------- */
+      .philosophy-section {
+        padding: 8rem 0;
+      }
+      .philosophy-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6vw;
+        align-items: start;
+      }
+      .philosophy-large-text {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        line-height: 1.1;
+        font-weight: 700;
+      }
+      .philosophy-details {
+        font-size: 0.8rem;
+        line-height: 1.8;
+        opacity: 0.7;
       }
 
       /* ---------- FOOTER ---------- */
@@ -534,7 +463,8 @@
         font-size: 0.7rem;
         letter-spacing: 0.1em;
         color: #6b6b6e;
-        background: var(--bg);
+        flex-wrap: wrap;
+        gap: 1rem;
       }
 
       /* ---------- CURSOR ---------- */
@@ -548,20 +478,121 @@
         z-index: 9999;
         mix-blend-mode: difference;
         transition: transform 0.1s ease-out;
+        display: none;
       }
 
-      /* ---------- RESPONSIVE BASIC ---------- */
-      @media (max-width: 768px) {
-        .founder-grid,
-        .philosophy-grid,
+      /* ========== АДАПТИВ ========== */
+      @media (max-width: 1024px) {
+        .matrix-item:nth-child(1) {
+          grid-column: span 6;
+        }
+        .matrix-item:nth-child(2) {
+          grid-column: span 6;
+          margin-top: 0;
+        }
+        .matrix-item:nth-child(3) {
+          grid-column: span 6;
+          margin-top: 0;
+        }
+        .matrix-item:nth-child(4) {
+          grid-column: span 6;
+          margin-top: 0;
+        }
+        .matrix-item:nth-child(5) {
+          grid-column: span 6;
+          margin-top: 0;
+        }
+        .matrix-item:nth-child(6) {
+          grid-column: span 6;
+          margin-top: 0;
+        }
         .masonry {
+          grid-template-columns: 1fr 1fr;
+        }
+        .project-card:nth-child(n) .project-placeholder {
+          margin-top: 0;
+          padding-bottom: 120%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .burger {
+          display: flex;
+        }
+        .nav-links {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: var(--solid);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 2.5rem;
+          transform: translateX(100%);
+          transition: transform 0.5s var(--transition);
+          z-index: 100;
+        }
+        .nav-links.active {
+          transform: translateX(0);
+        }
+        .nav-links a {
+          font-size: 1.5rem;
+          color: var(--bg);
+        }
+        .founder-grid,
+        .philosophy-grid {
           grid-template-columns: 1fr;
+          gap: 3rem;
         }
         .stats-strip {
           grid-template-columns: 1fr 1fr;
+          gap: 2.5rem;
         }
-        .nav-links {
-          gap: 1.5rem;
+        .masonry {
+          grid-template-columns: 1fr;
+        }
+        .matrix-grid {
+          grid-template-columns: 1fr;
+        }
+        .matrix-item:nth-child(n) {
+          grid-column: span 1;
+          margin-top: 0;
+        }
+        .custom-cursor {
+          display: none;
+        }
+        footer {
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+        }
+      }
+      /* Обновлённые правила для masonry с 5+ карточками */
+      @media (max-width: 1024px) {
+        .masonry {
+          grid-template-columns: 1fr 1fr;
+        }
+        .project-card:nth-child(n) .project-placeholder {
+          margin-top: 0;
+          padding-bottom: 130%;
+        }
+        /* Georgia Dırsi — пусть будет на всю ширину на планшете */
+        .project-card:first-child {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .masonry {
+          grid-template-columns: 1fr;
+        }
+        .project-card:first-child {
+          grid-column: span 1;
+        }
+        .project-card:nth-child(n) .project-placeholder {
+          padding-bottom: 120%;
         }
       }
     </style>
@@ -571,12 +602,15 @@
 
     <nav>
       <div class="logo">HGK ENG.</div>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#">PRINCIPLES</a></li>
         <li><a href="#">MATRIX</a></li>
         <li><a href="#">INDEX</a></li>
         <li><a href="#">VAULT</a></li>
       </ul>
+      <button class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
 
     <!-- HERO -->
@@ -589,11 +623,10 @@
       <div class="scroll-indicator">( SCROLL )</div>
     </section>
 
-    <!-- FOUNDER: THE CONSTRUCTION ETHOS -->
+    <!-- FOUNDER -->
     <section class="founder-section container">
       <div class="founder-grid">
         <div>
-          <!-- PLACEHOLDER: Pouring of a massive foundation mat. Concrete flowing into rebar cages at scale. Monochrome with warm cast. -->
           <div class="texture-placeholder">
             <span>[ Foundation Pour — 12,000m³ Continuous ]</span>
           </div>
@@ -607,42 +640,118 @@
             we hand them back — built."
           </p>
           <div class="founder-name">
-            <span>Hasan Gökhan Kokoglu</span><br />
-            <span class="body-mono">Founder & Chief Engineer</span>
+            <span>Hasan Gökhan Kokoglu</span><br /><span class="body-mono"
+              >Founder & Chief Engineer</span
+            >
           </div>
         </div>
       </div>
     </section>
 
-    <!-- STATS: THE SCALE OF EXECUTION -->
-    <section class="stats-strip container-full" style="padding: 4rem 6vw">
+    <!-- STATS (с анимированными счётчиками) -->
+    <section class="stats-strip">
       <div class="stat-item">
-        <div class="stat-number">2.4M</div>
+        <div class="stat-number">
+          <span class="counter" data-target="2.4" data-suffix="M">0</span>
+        </div>
         <div class="stat-description">
           Square meters<br />under construction<br />since 1998
         </div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">186</div>
+        <div class="stat-number">
+          <span class="counter" data-target="186" data-suffix="">0</span>
+        </div>
         <div class="stat-description">
           Projects completed<br />across 12 countries<br />zero failures
         </div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">9.2</div>
+        <div class="stat-number">
+          <span class="counter" data-target="9.2" data-suffix="">0</span>
+        </div>
         <div class="stat-description">
           Magnitude seismic<br />resistance engineered<br />and tested
         </div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">24/7</div>
+        <div class="stat-number"><span class="counter-static">24/7</span></div>
         <div class="stat-description">
           Site operations<br />real-time monitoring<br />global deployment
         </div>
       </div>
     </section>
+    <!-- BUILDERS' ETHOS (Client's Core Promise) -->
+    <section class="ethos-section container" style="padding: 8rem 0 6rem">
+      <div
+        class="ethos-grid"
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 6vw;
+          align-items: start;
+        "
+      >
+        <div>
+          <p class="section-label">/ Our Promise</p>
+          <p class="philosophy-large-text" style="margin-bottom: 0">
+            We build relationships as solid as our foundations.
+          </p>
+        </div>
+        <div>
+          <p class="philosophy-details">
+            HGK Engineering & Construction is not a network of subcontractors.
+            We are a single point of responsibility — from planning to final
+            delivery. Our turnkey approach means you deal with one team, one
+            standard, one obsession with quality.
+          </p>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 2rem;
+              margin-top: 3rem;
+            "
+          >
+            <div>
+              <h4
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 0.8rem;
+                  margin-bottom: 0.5rem;
+                  color: var(--solid);
+                "
+              >
+                ENDURING
+              </h4>
+              <p style="font-size: 0.7rem; line-height: 1.8; opacity: 0.7">
+                Long-term partnerships based on trust, professionalism, and an
+                unbroken track record of on-time delivery.
+              </p>
+            </div>
+            <div>
+              <h4
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 0.8rem;
+                  margin-bottom: 0.5rem;
+                  color: var(--solid);
+                "
+              >
+                SUSTAINABLE
+              </h4>
+              <p style="font-size: 0.7rem; line-height: 1.8; opacity: 0.7">
+                Modern, environmentally conscious living spaces. We integrate
+                innovative construction technologies to add lasting value for
+                future generations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- CAPABILITIES MATRIX — REDESIGNED -->
+    <!-- MATRIX -->
     <section class="matrix-section container">
       <div class="matrix-grid">
         <div class="matrix-item">
@@ -650,7 +759,8 @@
           <h3>Seismic<br />Engineering & Execution</h3>
           <p>
             Base isolation systems. Fluid viscous dampers. Post-tensioned shear
-            walls. We build resistance into every pour.
+            walls. We engineer resilience into every pour — safeguarding both
+            structure and life. Full turnkey seismic package.
           </p>
         </div>
         <div class="matrix-item">
@@ -658,23 +768,26 @@
           <h3>Deep Foundation<br />& Ground Engineering</h3>
           <p>
             Barrette piles to 80m. Diaphragm walls in aggressive hydrostatic
-            conditions. Ground freezing where required.
+            conditions. Ground freezing where required. Delivered with the
+            strictest workplace safety protocols.
           </p>
         </div>
         <div class="matrix-item">
           <div class="matrix-icon-placeholder"></div>
           <h3>High-Rise<br />Core & Shell</h3>
           <p>
-            Jump-form and slip-form systems. Column-tree steel erection.
-            Delivering a floor every 4 days.
+            Jump-form and slip-form systems. Column-tree steel erection. We
+            guarantee a structural floor cycle on schedule, every time.
+            Aesthetic precision as standard.
           </p>
         </div>
         <div class="matrix-item">
           <div class="matrix-icon-placeholder"></div>
           <h3>Complex<br />Facade Installation</h3>
           <p>
-            Unitized curtain walls. Point-fixed structural glazing. 80,000+
-            elements installed annually.
+            Unitized curtain walls. Point-fixed structural glazing. 20,000+
+            elements installed annually. Durability and finish quality inspected
+            at every stage.
           </p>
         </div>
         <div class="matrix-item">
@@ -682,75 +795,156 @@
           <h3>Infrastructure<br />& Heavy Civil</h3>
           <p>
             Bridge construction. Marine works. TBM tunneling. Heavy lifting up
-            to 1,200 tonnes.
+            to 1,200 tonnes. Self-performed by our own engineers — no
+            subcontractor chain.
           </p>
         </div>
         <div class="matrix-item">
           <div class="matrix-icon-placeholder"></div>
           <h3>MEP Integration<br />& Building Physics</h3>
           <p>
-            Full BIM Level 3 coordination. Prefabricated service modules.
-            Commissioning management.
+            FFull BIM Level 3 coordination. Prefabricated service modules. We
+            integrate building physics with turnkey efficiency — from concept to
+            commissioning.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- PROJECTS: EXECUTED WORK -->
+    <!-- PROJECTS -->
     <section class="projects-section container">
       <div class="masonry">
+        <!-- 1. Georgia Dırsi — флагман, высокая карточка -->
         <div class="project-card">
-          <div class="project-placeholder" style="background: #ddd">
-            <!-- PLACEHOLDER: Night pour of a raft foundation. Tower cranes, pump trucks, floodlights. Industrial scale. -->
-          </div>
+          <div
+            class="project-placeholder"
+            style="
+              background-image: url('./images/image-11.webp');
+              background-size: cover;
+              background-position: center;
+              padding-bottom: 140%;
+            "
+          ></div>
           <div class="project-overlay">
-            <span class="coordinates">41.0082° N, 28.9784° E</span>
+            <span class="coordinates">41.7151° N, 44.8271° E</span>
             <span class="body-mono" style="margin-top: 0.5rem"
-              >Istanbul Financial Tower</span
+              >Dırsi Masterplan</span
             >
             <span class="project-scope"
-              >Scope: Core & Shell, 380m<br />Continuous foundation mat pour:
-              18,500m³</span
+              >Scope: 15-hectare mixed-use execution. Landscape, residential,
+              commercial — delivered as a unified structural package.<br />Client:
+              AS Group</span
             >
-            <span class="body-mono">2026</span>
+            <span class="body-mono">2025 — Completed</span>
           </div>
         </div>
+
+        <!-- 2. Lujo Bodrum — Landscape Wing -->
         <div class="project-card">
-          <div class="project-placeholder" style="background: #c4c4c4">
-            <!-- PLACEHOLDER: Steel truss being lifted by crawler crane against desert sky. Scale reference: workers look tiny. -->
-          </div>
+          <div
+            class="project-placeholder"
+            style="
+              background-image: url('./images/image-13.webp');
+              background-size: cover;
+              background-position: center;
+              padding-bottom: 110%;
+              margin-top: 2rem;
+            "
+          ></div>
           <div class="project-overlay">
-            <span class="coordinates">25.2048° N, 55.2708° E</span>
+            <span class="coordinates">37.0344° N, 27.4305° E</span>
             <span class="body-mono" style="margin-top: 0.5rem"
-              >Museum of Gravity</span
+              >Lujo Bodrum — Landscape Wing</span
             >
             <span class="project-scope"
-              >Scope: Full structural package<br />Longest cantilever: 42m
-              unsupported</span
+              >Scope: Structural execution of premium accommodation complex.
+              Terrain-adaptive foundations, seamless indoor-outdoor
+              integration.</span
             >
-            <span class="body-mono">2024</span>
+            <span class="body-mono">2023 — Completed</span>
           </div>
         </div>
+
+        <!-- 3. Ankara Greenline Residences -->
         <div class="project-card">
-          <div class="project-placeholder" style="background: #bcbcbc">
-            <!-- PLACEHOLDER: Drone view of complex formwork geometry — curved walls, amphitheater-like structure. -->
-          </div>
+          <div
+            class="project-placeholder"
+            style="
+              background-image: url('./images/image-5.webp');
+              background-size: cover;
+              background-position: center;
+              padding-bottom: 130%;
+              margin-top: -1rem;
+            "
+          ></div>
           <div class="project-overlay">
-            <span class="coordinates">24.7136° N, 46.6753° E</span>
+            <span class="coordinates">39.9334° N, 32.8597° E</span>
             <span class="body-mono" style="margin-top: 0.5rem"
-              >Riyadh Symphony Hall</span
+              >Ankara Greenline Residences</span
             >
             <span class="project-scope"
-              >Scope: Substructure + Superstructure<br />Custom formwork: 1,200
-              unique shapes</span
+              >Scope: Residential landscape execution. Topography-responsive
+              terracing, structural planting integration, hardscape
+              precision.</span
             >
-            <span class="body-mono">2023</span>
+            <span class="body-mono">2023 — Completed</span>
+          </div>
+        </div>
+
+        <!-- 4. Lujo Bodrum — Main Pavilion -->
+        <div class="project-card">
+          <div
+            class="project-placeholder"
+            style="
+              background-image: url('./images/image-23.webp');
+              background-size: cover;
+              background-position: center;
+              padding-bottom: 120%;
+              margin-top: 1rem;
+            "
+          ></div>
+          <div class="project-overlay">
+            <span class="coordinates">37.0344° N, 27.4305° E</span>
+            <span class="body-mono" style="margin-top: 0.5rem"
+              >Lujo Bodrum — Main Pavilion</span
+            >
+            <span class="project-scope"
+              >Scope: Turnkey delivery of commercial and hospitality volumes.
+              Bespoke formwork, natural stone integration, zero-defect
+              finish.</span
+            >
+            <span class="body-mono">2023 — Completed</span>
+          </div>
+        </div>
+
+        <!-- 5. Ankara Private Residence -->
+        <div class="project-card">
+          <div
+            class="project-placeholder"
+            style="
+              background-image: url('./images/image-6.webp');
+              background-size: cover;
+              background-position: center;
+              padding-bottom: 105%;
+              margin-top: 3rem;
+            "
+          ></div>
+          <div class="project-overlay">
+            <span class="coordinates">39.9334° N, 32.8597° E</span>
+            <span class="body-mono" style="margin-top: 0.5rem"
+              >Ankara Private Residence</span
+            >
+            <span class="project-scope"
+              >Scope: Full interior structural package. Spatial reconfiguration,
+              custom millwork integration, finish-level execution.</span
+            >
+            <span class="body-mono">2025 — Completed</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PHILOSOPHY: WHY WE BUILD -->
+    <!-- PHILOSOPHY -->
     <section class="philosophy-section container">
       <div class="philosophy-grid">
         <div>
@@ -796,6 +990,7 @@
     <script type="module">
       import * as THREE from "three";
 
+      // Three.js setup
       const canvas = document.getElementById("three-canvas");
       const renderer = new THREE.WebGLRenderer({
         canvas,
@@ -804,7 +999,6 @@
       });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(window.innerWidth, window.innerHeight);
-
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(
         45,
@@ -815,8 +1009,6 @@
       camera.position.z = 5;
 
       const group = new THREE.Group();
-
-      // Central structural core — hexagonal, like a high-rise core
       const geometryCore = new THREE.CylinderGeometry(0.5, 0.5, 2.5, 6);
       const materialWire = new THREE.MeshBasicMaterial({
         color: 0xc8a96e,
@@ -827,54 +1019,46 @@
       const core = new THREE.Mesh(geometryCore, materialWire);
       group.add(core);
 
-      // Tension ring — representing structural bracing
       const ringGeo = new THREE.TorusGeometry(1.2, 0.02, 8, 40);
-      const ringMat = new THREE.MeshBasicMaterial({
-        color: 0xf7f5f0,
-        wireframe: false,
-      });
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0xf7f5f0 });
       const ring = new THREE.Mesh(ringGeo, ringMat);
       ring.rotation.x = Math.PI / 2;
       group.add(ring);
 
-      // Outrigger structural arms
       for (let i = 0; i < 4; i++) {
-        const armGeo = new THREE.BoxGeometry(0.1, 1.8, 0.1);
-        const arm = new THREE.Mesh(armGeo, materialWire);
+        const arm = new THREE.Mesh(
+          new THREE.BoxGeometry(0.1, 1.8, 0.1),
+          materialWire
+        );
         arm.rotation.z = (i * Math.PI) / 4;
         group.add(arm);
       }
-
       scene.add(group);
 
-      // Construction dust particles
       const particlesGeo = new THREE.BufferGeometry();
-      const particlesCount = 150;
-      const posArray = new Float32Array(particlesCount * 3);
-      for (let i = 0; i < particlesCount * 3; i++) {
-        posArray[i] = (Math.random() - 0.5) * 8;
-      }
+      const posArray = new Float32Array(150 * 3);
+      for (let i = 0; i < 150 * 3; i++) posArray[i] = (Math.random() - 0.5) * 8;
       particlesGeo.setAttribute(
         "position",
         new THREE.BufferAttribute(posArray, 3)
       );
-      const particlesMat = new THREE.PointsMaterial({
-        size: 0.02,
-        color: 0xc8a96e,
-        transparent: true,
-        blending: THREE.AdditiveBlending,
-      });
-      const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
+      const particlesMesh = new THREE.Points(
+        particlesGeo,
+        new THREE.PointsMaterial({
+          size: 0.02,
+          color: 0xc8a96e,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+        })
+      );
       scene.add(particlesMesh);
 
-      let mouseX = 0;
-      let mouseY = 0;
-
-      window.addEventListener("mousemove", (event) => {
-        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      let mouseX = 0,
+        mouseY = 0;
+      window.addEventListener("mousemove", (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
       });
-
       function animate() {
         requestAnimationFrame(animate);
         group.rotation.y += 0.002;
@@ -884,33 +1068,100 @@
         ring.material.opacity = 0.5 + Math.sin(Date.now() * 0.003) * 0.2;
         renderer.render(scene, camera);
       }
-
       animate();
-
       window.addEventListener("resize", () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
       });
+    </script>
 
-      // Cursor
+    <!-- Скрипты: счётчики, бургер, курсор -->
+    <script>
+      // Анимация счётчиков через Intersection Observer
+      function animateCounter(el) {
+        const target = parseFloat(el.dataset.target);
+        const suffix = el.dataset.suffix || "";
+        const duration = 2000;
+        const startTime = performance.now();
+        const startVal = 0;
+        const isFloat = target % 1 !== 0;
+
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+          let current = startVal + (target - startVal) * eased;
+          el.textContent = isFloat
+            ? current.toFixed(1) + suffix
+            : Math.floor(current) + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+          else
+            el.textContent = isFloat
+              ? target.toFixed(1) + suffix
+              : Math.floor(target) + suffix;
+        }
+        requestAnimationFrame(update);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const counters = entry.target.querySelectorAll(".counter");
+              counters.forEach((c) => animateCounter(c));
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+
+      document
+        .querySelectorAll(".stats-strip")
+        .forEach((strip) => observer.observe(strip));
+
+      // Бургер-меню
+      const burger = document.getElementById("burger");
+      const navLinks = document.getElementById("navLinks");
+      burger.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+      // Закрытие при клике на ссылку
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          burger.classList.remove("active");
+          navLinks.classList.remove("active");
+        });
+      });
+
+      // Кастомный курсор (только десктоп)
       const cursor = document.getElementById("cursor");
-      document.addEventListener("mousemove", (e) => {
-        cursor.style.transform = `translate(${e.clientX - 4}px, ${
-          e.clientY - 4
-        }px)`;
-      });
-
-      document.querySelectorAll(".project-card, .matrix-item").forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          cursor.style.transform = "scale(3)";
-          cursor.style.background = "white";
+      if (window.matchMedia("(pointer: fine)").matches) {
+        cursor.style.display = "block";
+        document.addEventListener("mousemove", (e) => {
+          cursor.style.transform = `translate(${e.clientX - 4}px, ${
+            e.clientY - 4
+          }px)`;
         });
-        el.addEventListener("mouseleave", () => {
-          cursor.style.transform = "scale(1)";
-          cursor.style.background = "#C8A96E";
-        });
-      });
+        document
+          .querySelectorAll(".project-card, .matrix-item")
+          .forEach((el) => {
+            el.addEventListener("mouseenter", () => {
+              cursor.style.transform =
+                cursor.style.transform.replace("translate", "translate") +
+                " scale(3)";
+              cursor.style.background = "white";
+            });
+            el.addEventListener("mouseleave", () => {
+              cursor.style.transform = "scale(1)";
+              cursor.style.background = "#C8A96E";
+            });
+          });
+      } else {
+        cursor.style.display = "none";
+      }
     </script>
   </body>
 </html>
