@@ -596,16 +596,17 @@
           padding-bottom: 120%;
         }
       }
-/* ---------- PROJECTS CAROUSEL (JS-driven) ---------- */
+/* ---------- PROJECTS CAROUSEL ---------- */
 .projects-carousel-wrapper {
   position: relative;
   padding: 0 6vw;
-  overflow: hidden;
+  overflow: hidden; /* маскирует всё, что за пределами */
 }
 
 .projects-carousel {
   display: flex;
   gap: 2vw;
+  width: max-content; /* ВАЖНО: контейнер растягивается под все карточки */
   transition: transform 0.6s var(--transition);
   will-change: transform;
 }
@@ -622,14 +623,13 @@
   display: block;
   filter: grayscale(30%);
   transition: filter 0.6s var(--transition);
-  pointer-events: none; /* Чтобы не мешать drag на мобилке */
 }
 
 .project-card:hover img {
   filter: grayscale(0%);
 }
 
-/* Оверлей */
+/* Оверлей — без изменений */
 .project-card .project-overlay {
   position: absolute;
   inset: 0;
@@ -643,11 +643,9 @@
   color: var(--solid);
   pointer-events: none;
 }
-
 .project-card:hover .project-overlay {
   opacity: 1;
 }
-
 .project-overlay .project-name {
   font-family: "Space Mono", monospace;
   font-size: clamp(0.9rem, 1.5vw, 1.2rem);
@@ -656,14 +654,12 @@
   letter-spacing: -0.02em;
   margin-bottom: 0.3rem;
 }
-
 .project-overlay .project-location {
   font-family: "Space Mono", monospace;
   font-size: 0.65rem;
   letter-spacing: 0.15em;
   opacity: 0.8;
 }
-
 .project-overlay .project-scope {
   font-family: "Space Mono", monospace;
   font-size: 0.6rem;
@@ -672,7 +668,6 @@
   opacity: 0.9;
   max-width: 320px;
 }
-
 .project-overlay .project-status {
   font-family: "Space Mono", monospace;
   font-size: 0.6rem;
@@ -684,7 +679,7 @@
   align-self: flex-start;
 }
 
-/* Кнопки-стрелки */
+/* Стрелки */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -704,17 +699,14 @@
   transition: all 0.3s var(--transition);
   backdrop-filter: blur(10px);
 }
-
 .carousel-btn:hover {
   background: var(--solid);
   color: var(--bg);
   border-color: var(--bg);
 }
-
 .carousel-btn.prev {
   left: 6vw;
 }
-
 .carousel-btn.next {
   right: 6vw;
 }
@@ -735,7 +727,6 @@
     right: 2vw;
   }
 }
-
       /* Золотой оверлей — как был, но адаптирован */
       .project-card .project-overlay {
         position: absolute;
@@ -1367,18 +1358,19 @@
       } else {
         cursor.style.display = "none";
       }
-       (function () {
+      
+  (function () {
+    const wrapper = document.querySelector(".projects-carousel-wrapper");
     const carousel = document.getElementById("projectsCarousel");
     const prevBtn = document.getElementById("carouselPrev");
     const nextBtn = document.getElementById("carouselNext");
 
-    if (!carousel || !prevBtn || !nextBtn) return;
+    if (!carousel || !prevBtn || !nextBtn || !wrapper) return;
 
     let currentIndex = 0;
     const cards = carousel.querySelectorAll(".project-card");
 
-    // Рассчитываем смещение на основе ширины карточки + gap
-    function getScrollAmount(index) {
+    function getCardOffset(index) {
       if (index <= 0) return 0;
       let offset = 0;
       const gap = parseFloat(getComputedStyle(carousel).gap) || 0;
@@ -1389,24 +1381,14 @@
     }
 
     function updateCarousel() {
-      const scrollAmount = getScrollAmount(currentIndex);
+      const scrollAmount = getCardOffset(currentIndex);
       carousel.style.transform = `translateX(-${scrollAmount}px)`;
 
       // Прячем стрелки по краям
-      if (currentIndex === 0) {
-        prevBtn.style.opacity = "0";
-        prevBtn.style.pointerEvents = "none";
-      } else {
-        prevBtn.style.opacity = "1";
-        prevBtn.style.pointerEvents = "auto";
-      }
-      if (currentIndex >= cards.length - 1) {
-        nextBtn.style.opacity = "0";
-        nextBtn.style.pointerEvents = "none";
-      } else {
-        nextBtn.style.opacity = "1";
-        nextBtn.style.pointerEvents = "auto";
-      }
+      prevBtn.style.opacity = currentIndex === 0 ? "0" : "1";
+      prevBtn.style.pointerEvents = currentIndex === 0 ? "none" : "auto";
+      nextBtn.style.opacity = currentIndex >= cards.length - 1 ? "0" : "1";
+      nextBtn.style.pointerEvents = currentIndex >= cards.length - 1 ? "none" : "auto";
     }
 
     function goNext() {
@@ -1426,7 +1408,7 @@
     nextBtn.addEventListener("click", goNext);
     prevBtn.addEventListener("click", goPrev);
 
-    // Клавиатура: стрелки влево/вправо
+    // Клавиатура
     document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowRight") {
         e.preventDefault();
@@ -1441,30 +1423,23 @@
     let touchStartX = 0;
     let touchEndX = 0;
 
-    carousel.addEventListener(
-      "touchstart",
-      function (e) {
-        touchStartX = e.changedTouches[0].screenX;
-      },
-      { passive: true }
-    );
+    carousel.addEventListener("touchstart", function (e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-    carousel.addEventListener(
-      "touchend",
-      function (e) {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) goNext();
-          else goPrev();
-        }
-      },
-      { passive: true }
-    );
+    carousel.addEventListener("touchend", function (e) {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) goNext();
+        else goPrev();
+      }
+    }, { passive: true });
 
     // Инициализация
     updateCarousel();
   })();
+
     </script>
   </body>
 </html>
