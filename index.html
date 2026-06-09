@@ -595,6 +595,92 @@
           padding-bottom: 120%;
         }
       }
+      /* ---------- PROJECTS CAROUSEL ---------- */
+      .projects-carousel {
+        display: flex;
+        gap: 2vw;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        padding: 0 6vw;
+        cursor: grab;
+        user-select: none;
+      }
+      .projects-carousel::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+      }
+      .projects-carousel:active {
+        cursor: grabbing;
+      }
+
+      .project-card {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        position: relative;
+        height: 70vh;
+        display: inline-block;
+      }
+      .project-card img {
+        height: 100%;
+        width: auto;
+        display: block;
+        object-fit: contain;
+        filter: grayscale(30%);
+        transition: filter 0.6s var(--transition);
+      }
+      .project-card:hover img {
+        filter: grayscale(0%);
+      }
+
+      /* Золотой оверлей — как был, но адаптирован */
+      .project-card .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(200, 169, 110, 0.92);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 2rem;
+        opacity: 0;
+        transition: opacity 0.4s var(--transition);
+        color: var(--solid);
+        pointer-events: none;
+      }
+      .project-card:hover .project-overlay {
+        opacity: 1;
+      }
+
+      .project-overlay .project-name {
+        font-family: "Space Mono", monospace;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.02em;
+        margin-bottom: 0.3rem;
+      }
+      .project-overlay .project-location {
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        opacity: 0.8;
+      }
+      .project-overlay .project-scope {
+        font-size: 0.65rem;
+        margin-top: 1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        max-width: 300px;
+      }
+      .project-overlay .project-status {
+        font-family: "Space Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        margin-top: 1rem;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--solid);
+        display: inline-block;
+        align-self: flex-start;
+      }
     </style>
   </head>
   <body>
@@ -811,135 +897,87 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section class="projects-section container">
-      <div class="masonry">
-        <!-- 1. Georgia Dırsi — флагман, высокая карточка -->
-        <div class="project-card">
-          <div
-            class="project-placeholder"
-            style="
-              background-image: url('image 11.webp');
-              background-size: cover;
-              background-position: center;
-              padding-bottom: 140%;
-            "
-          ></div>
-          <div class="project-overlay">
-            <span class="coordinates">41.7151° N, 44.8271° E</span>
-            <span class="body-mono" style="margin-top: 0.5rem"
-              >Dırsi Masterplan</span
-            >
-            <span class="project-scope"
-              >Scope: 15-hectare mixed-use execution. Landscape, residential,
-              commercial — delivered as a unified structural package.<br />Client:
-              AS Group</span
-            >
-            <span class="body-mono">2025 — Completed</span>
-          </div>
+    <!-- PROJECTS CAROUSEL -->
+    <section class="projects-carousel">
+      <!-- 1. Georgia Dırsi -->
+      <div class="project-card">
+        <img src="image 11.webp" alt="Dırsi Masterplan" loading="lazy" />
+        <div class="project-overlay">
+          <span class="project-name">Dırsi Masterplan</span>
+          <span class="project-location">Tbilisi, Georgia</span>
+          <span class="project-scope"
+            >15-hectare mixed-use execution. Landscape, residential, commercial
+            — unified structural package. Client: AS Group</span
+          >
+          <span class="project-status">COMPLETED</span>
         </div>
+      </div>
 
-        <!-- 2. Lujo Bodrum — Landscape Wing -->
-        <div class="project-card">
-          <div
-            class="project-placeholder"
-            style="
-              background-image: url('image-13.webp');
-              background-size: cover;
-              background-position: center;
-              padding-bottom: 110%;
-              margin-top: 2rem;
-            "
-          ></div>
-          <div class="project-overlay">
-            <span class="coordinates">37.0344° N, 27.4305° E</span>
-            <span class="body-mono" style="margin-top: 0.5rem"
-              >Lujo Bodrum — Landscape Wing</span
-            >
-            <span class="project-scope"
-              >Scope: Structural execution of premium accommodation complex.
-              Terrain-adaptive foundations, seamless indoor-outdoor
-              integration.</span
-            >
-            <span class="body-mono">2023 — Completed</span>
-          </div>
+      <!-- 2. Lujo Bodrum — Landscape Wing -->
+      <div class="project-card">
+        <img
+          src="image 13.webp"
+          alt="Lujo Bodrum Landscape Wing"
+          loading="lazy"
+        />
+        <div class="project-overlay">
+          <span class="project-name">Lujo Bodrum</span>
+          <span class="project-location">Bodrum, Turkey</span>
+          <span class="project-scope"
+            >Landscape Wing. Terrain-adaptive foundations, indoor-outdoor
+            integration.</span
+          >
+          <span class="project-status">COMPLETED</span>
         </div>
+      </div>
 
-        <!-- 3. Ankara Greenline Residences -->
-        <div class="project-card">
-          <div
-            class="project-placeholder"
-            style="
-              background-image: url('image 5.webp');
-              background-size: cover;
-              background-position: center;
-              padding-bottom: 130%;
-              margin-top: -1rem;
-            "
-          ></div>
-          <div class="project-overlay">
-            <span class="coordinates">39.9334° N, 32.8597° E</span>
-            <span class="body-mono" style="margin-top: 0.5rem"
-              >Ankara Greenline Residences</span
-            >
-            <span class="project-scope"
-              >Scope: Residential landscape execution. Topography-responsive
-              terracing, structural planting integration, hardscape
-              precision.</span
-            >
-            <span class="body-mono">2023 — Completed</span>
-          </div>
+      <!-- 3. Ankara Greenline -->
+      <div class="project-card">
+        <img
+          src="image 5.webp"
+          alt="Ankara Greenline Residences"
+          loading="lazy"
+        />
+        <div class="project-overlay">
+          <span class="project-name">Ankara Greenline Residences</span>
+          <span class="project-location">Ankara, Turkey</span>
+          <span class="project-scope"
+            >Residential landscape. Topography-responsive terracing, hardscape
+            precision.</span
+          >
+          <span class="project-status">COMPLETED</span>
         </div>
+      </div>
 
-        <!-- 4. Lujo Bodrum — Main Pavilion -->
-        <div class="project-card">
-          <div
-            class="project-placeholder"
-            style="
-              background-image: url('image-23');
-              background-size: cover;
-              background-position: center;
-              padding-bottom: 120%;
-              margin-top: 1rem;
-            "
-          ></div>
-          <div class="project-overlay">
-            <span class="coordinates">37.0344° N, 27.4305° E</span>
-            <span class="body-mono" style="margin-top: 0.5rem"
-              >Lujo Bodrum — Main Pavilion</span
-            >
-            <span class="project-scope"
-              >Scope: Turnkey delivery of commercial and hospitality volumes.
-              Bespoke formwork, natural stone integration, zero-defect
-              finish.</span
-            >
-            <span class="body-mono">2023 — Completed</span>
-          </div>
+      <!-- 4. Lujo Bodrum — Main Pavilion -->
+      <div class="project-card">
+        <img
+          src="image 23.webp"
+          alt="Lujo Bodrum Main Pavilion"
+          loading="lazy"
+        />
+        <div class="project-overlay">
+          <span class="project-name">Lujo Bodrum</span>
+          <span class="project-location">Bodrum, Turkey</span>
+          <span class="project-scope"
+            >Main Pavilion. Turnkey delivery of hospitality volumes, natural
+            stone integration.</span
+          >
+          <span class="project-status">COMPLETED</span>
         </div>
+      </div>
 
-        <!-- 5. Ankara Private Residence -->
-        <div class="project-card">
-          <div
-            class="project-placeholder"
-            style="
-              background-image: url('./images/image-6');
-              background-size: cover;
-              background-position: center;
-              padding-bottom: 105%;
-              margin-top: 3rem;
-            "
-          ></div>
-          <div class="project-overlay">
-            <span class="coordinates">39.9334° N, 32.8597° E</span>
-            <span class="body-mono" style="margin-top: 0.5rem"
-              >Ankara Private Residence</span
-            >
-            <span class="project-scope"
-              >Scope: Full interior structural package. Spatial reconfiguration,
-              custom millwork integration, finish-level execution.</span
-            >
-            <span class="body-mono">2025 — Completed</span>
-          </div>
+      <!-- 5. Ankara Private Residence -->
+      <div class="project-card">
+        <img src="image 6.webp" alt="Ankara Private Residence" loading="lazy" />
+        <div class="project-overlay">
+          <span class="project-name">Ankara Private Residence</span>
+          <span class="project-location">Ankara, Turkey</span>
+          <span class="project-scope"
+            >Full interior package. Spatial reconfiguration, custom millwork,
+            finish-level execution.</span
+          >
+          <span class="project-status">IN PROGRESS</span>
         </div>
       </div>
     </section>
