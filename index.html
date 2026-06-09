@@ -233,20 +233,29 @@
         align-items: center;
       }
       .texture-placeholder {
-        width: 100%;
-        padding-bottom: 140%;
-        background: var(--concrete);
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #9a9a9c;
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="%23E5E1D8"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.5" fill="none"/><circle cx="50" cy="50" r="15" stroke="%231C1C1E" stroke-width="0.5" fill="none"/></svg>');
-        background-size: cover;
-      }
+  width: 100%;
+  padding-bottom: 140%;
+  background: var(--concrete);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9a9a9c;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  /* Новый фон — фото + градиент */
+  background-image: 
+    linear-gradient(
+      to bottom,
+      var(--bg) 0%,
+      rgba(247, 245, 240, 0.6) 15%,
+      rgba(247, 245, 240, 0) 40%
+    ),
+    url('night2w.webp');
+  background-size: cover;
+  background-position: center;
+}
       .section-label {
         font-family: "Space Mono", monospace;
         font-size: 0.65rem;
