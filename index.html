@@ -232,10 +232,9 @@
         gap: 4vw;
         align-items: center;
       }
-      .texture-placeholder {
+.texture-placeholder {
   width: 100%;
   padding-bottom: 140%;
-  background: var(--concrete);
   position: relative;
   display: flex;
   align-items: center;
@@ -244,17 +243,27 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  /* Новый фон — фото + градиент */
+  
+  /* Многослойный фон: градиент → SVG-текстура → фото */
   background-image: 
+    /* Слой 1: Градиент сверху в цвет обложки (тёмный) */
     linear-gradient(
       to bottom,
-      var(--bg) 0%,
-      rgba(247, 245, 240, 0.6) 15%,
-      rgba(247, 245, 240, 0) 40%
+      var(--solid) 0%,
+      rgba(28, 28, 30, 0.7) 12%,
+      rgba(28, 28, 30, 0) 35%
     ),
+    /* Слой 2: SVG-текстура с треугольником и кругом — полупрозрачная */
+    url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M0 0h100v100H0z" fill="transparent"/><path d="M50 20L80 80H20L50 20z" stroke="%23C8A96E" stroke-width="0.8" fill="none" opacity="0.6"/><circle cx="50" cy="50" r="15" stroke="%23C8A96E" stroke-width="0.8" fill="none" opacity="0.6"/></svg>'),
+    /* Слой 3: Фотография */
     url('night2w.webp');
-  background-size: cover;
+  
+  background-size: 
+    auto,      /* градиент — на весь блок */
+    100% 100%, /* SVG — растянут */
+    cover;     /* фото — cover */
   background-position: center;
+  background-repeat: no-repeat;
 }
       .section-label {
         font-family: "Space Mono", monospace;
